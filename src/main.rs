@@ -1,6 +1,19 @@
 use std::io;
+use std::io::prelude::*;
 use std::cmp::Ordering;
 use rand::Rng;
+
+fn pause() {
+    let mut stdin = io::stdin();
+    let mut stdout = io::stdout();
+
+    // allows cursor to stat at the end of the line, manual flush
+    write!(stdout, "Press 'Enter' to exit. . .").unwrap();
+    stdout.flush().unwrap();
+
+    // read a single byte and discard
+    let _ = stdin.read(&mut [0u8]).unwrap();
+}
 
 fn main() {
     println!("Guess a number between 1 and 100!");
@@ -33,5 +46,7 @@ fn main() {
             }
         }
     }
+
+    pause();
 
 }
